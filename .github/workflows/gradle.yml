@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    name: Test on ${{ matrix.java_version }} and ${{ matrix.os }}
+    name: Test on ${{ matrix.os }} with JDK ${{ matrix.java_version }} 
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
