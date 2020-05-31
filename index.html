@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,6 +8,7 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/custom.css">
 		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
@@ -16,8 +17,65 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h2>June 2019 Java Workshop</h2>
+				</section>
+				<section>
+					<section><h2>Set Up</h2></section>
+					<section>
+						<h3>Accessing the slides</h3>
+						<a href="https://callumtarttelin.github.io/java-workshop">https://callumtarttelin.github.io/java-workshop</a>
+					</section>
+					<section>
+						<h3>Required Software</h3>
+						<ul>
+							<li><a href="https://adoptopenjdk.net/releases.html">JDK > 11, demos tested in 11 and 14</a></li>
+							<li><a href="https://git-scm.com/downloads">git</a></li>
+							<li><a href="https://code.visualstudio.com/Download">IDE, examples will be in vscode, so will sys dev 2</a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Getting exercises in vscode</h3>
+						<code>
+							git clone https://github.com/CallumTarttelin/java-workshop.git
+							<br />
+							<br />
+							code --install-extension vscjava.vscode-java-pack
+							<br />
+							<br />
+							code --install-extension richardwillis.vscode-gradle
+							<br />
+							<br />
+							code java-workshop
+						</code>
+
+					</section>
+					<section>
+						<h3>Running examples from terminal</h3>
+						<p>
+							<span class="hotkey">ctrl</span>+<span class="hotkey">shift</span>+<span class="hotkey">i</span>
+							from inside vscode or in terminal
+						</p>
+						<code>
+							./gradlew project:task
+							<br />
+							<br />
+							./gradlew helloworld:run
+						</code>
+					</section>
+					<section>
+						 <h3>Getting help with exercises (Optional)</h3>
+						<p><code>code --install-extension ms-vsliveshare.vsliveshare</code></p>
+						<p>Then click the icon on the left and click share now</p>
+						<p>Send one of us the invite link and we'll try to help you</p>
+					</section>
+					<section>
+						<h3>Other IDEs</h3>
+						<p>If you are using intellij then create a new project from version control with
+							<code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
+						<p>The gradle menu should be in the right side of the IDE</p>
+					</section>
+				</section>
 			</div>
 		</div>
 

@@ -1,0 +1,11 @@
+.hotkey {
+    background-color: #909090;
+    color: black;
+    font-family: "JetBrains Mono NL", Hack, monospace;
+    padding: 0.1em;
+    border-radius: 0.2em;
+}
+
+code {
+    font-family: "JetBrains Mono NL", Hack, monospace;
+}
