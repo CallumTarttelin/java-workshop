@@ -79,7 +79,7 @@ fabric.properties
 .settings
 
 # Ignore Gradle build output directory
-
+*.class
 
 ### VisualStudioCode ###
 .vscode/*
