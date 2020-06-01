@@ -15,12 +15,13 @@ const gulp = require('gulp')
 const tap = require('gulp-tap')
 const zip = require('gulp-zip')
 const sass = require('gulp-sass')
+const Fiber = require('fibers');
 const header = require('gulp-header')
 const eslint = require('gulp-eslint')
-const minify = require('gulp-clean-css')
 const connect = require('gulp-connect')
 const autoprefixer = require('gulp-autoprefixer')
 
+sass.compiler = require('sass');
 const root = yargs.argv.root || '.'
 const port = yargs.argv.port || 8000
 
@@ -30,6 +31,10 @@ const banner = `/*!
 * MIT licensed
 *
 * Copyright (C) 2020 Hakim El Hattab, https://hakim.se
+*/\n`
+
+const custom = `/*
+* Custom CSS from java-workshop specifically
 */\n`
 
 // Prevents warnings from opening too many test pages
@@ -155,18 +160,25 @@ gulp.task('plugins', () => {
     } ));
 })
 
+const sassFunc = () => sass({ fiber: Fiber, outputStyle: 'compressed' }).on('error', sass.logError)
+
 gulp.task('css-themes', () => gulp.src(['./css/theme/source/*.{sass,scss}'])
-        .pipe(sass())
+        .pipe(sassFunc())
         .pipe(gulp.dest('./dist/theme')))
 
 gulp.task('css-core', () => gulp.src(['css/reveal.scss'])
-    .pipe(sass())
+    .pipe(sassFunc())
     .pipe(autoprefixer())
-    .pipe(minify({compatibility: 'ie9'}))
     .pipe(header(banner))
     .pipe(gulp.dest('./dist')))
 
-gulp.task('css', gulp.parallel('css-themes', 'css-core'))
+gulp.task('css-custom', () => gulp.src(['./css/custom.scss'])
+    .pipe(sassFunc())
+    .pipe(autoprefixer())
+    .pipe(header(custom))
+    .pipe(gulp.dest('./dist')))
+
+gulp.task('css', gulp.parallel('css-themes', 'css-core', 'css-custom'))
 
 gulp.task('qunit', () => {
 
@@ -284,7 +296,7 @@ gulp.task('serve', () => {
     gulp.watch([
         'css/*.scss',
         'css/print/*.{sass,scss,css}'
-    ], gulp.series('css-core', 'reload'))
+    ], gulp.series('css-core', 'css-custom', 'reload'))
 
     gulp.watch(['test/*.html'], gulp.series('test'))
 
