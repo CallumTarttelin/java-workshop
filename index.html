@@ -1,42 +1,43 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/custom.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/custom.css">
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h2>June 2020 Java Workshop</h2>
-				</section>
-				<section>
-					<section><h2>Set Up</h2></section>
-					<section>
-						<h3>Accessing the slides</h3>
-						<a href="https://callumtarttelin.github.io/java-workshop">https://callumtarttelin.github.io/java-workshop</a>
-					</section>
-					<section>
-						<h3>Required Software</h3>
-						<ul>
-							<li><a href="https://adoptopenjdk.net/releases.html">JDK > 11, demos tested in 11 and 14</a></li>
-							<li><a href="https://git-scm.com/downloads">git</a></li>
-							<li><a href="https://code.visualstudio.com/Download">IDE, examples will be in vscode, so will sys dev 2</a></li>
-						</ul>
-					</section>
-					<section>
-						<h3>Getting exercises in vscode</h3>
-						<pre><code data-trim data-noescape class="language-bash">
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>June 2020 Java Workshop</h2>
+        </section>
+        <section>
+            <section><h2>Set Up</h2></section>
+            <section>
+                <h3>Accessing the slides</h3>
+                <a href="https://callumtarttelin.github.io/java-workshop">https://callumtarttelin.github.io/java-workshop</a>
+            </section>
+            <section>
+                <h3>Required Software</h3>
+                <ul>
+                    <li><a href="https://adoptopenjdk.net/releases.html">JDK > 11, demos tested in 11 and 14</a></li>
+                    <li><a href="https://git-scm.com/downloads">git</a></li>
+                    <li><a href="https://code.visualstudio.com/Download">IDE, examples will be in vscode, so will sys
+                        dev 2</a></li>
+                </ul>
+            </section>
+            <section>
+                <h3>Getting exercises in vscode</h3>
+                <pre><code data-trim data-noescape class="language-bash">
 							git clone https://github.com/CallumTarttelin/java-workshop.git
 
 							code --install-extension vscjava.vscode-java-pack
@@ -46,49 +47,172 @@
 							code java-workshop
 						</code></pre>
 
-					</section>
-					<section>
-						<h3>Running examples from terminal</h3>
-						<p>
-							<span class="hotkey">ctrl</span>+<span class="hotkey">shift</span>+<span class="hotkey">i</span>
-							from inside vscode or in terminal
-						</p>
-						<pre><code data-trim data-noescape class="language-bash">
+            </section>
+            <section>
+                <h3>Running examples from terminal</h3>
+                <p>
+                    <span class="hotkey">ctrl</span>+<span class="hotkey">shift</span>+<span class="hotkey">i</span>
+                    from inside vscode or in terminal
+                </p>
+                <pre><code data-trim data-noescape class="language-bash">
 							./gradlew project:task
 
 							./gradlew helloworld:run
 						</code></pre>
-					</section>
-					<section>
-						 <h3>Getting help with exercises (Optional)</h3>
-						<p><code>code --install-extension ms-vsliveshare.vsliveshare</code></p>
-						<p>Then click the icon on the left and click share now</p>
-						<p>Send one of us the invite link and we'll try to help you</p>
-					</section>
-					<section>
-						<h3>Other IDEs</h3>
-						<p>If you are using intellij then create a new project from version control with
-							<code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
-						<p>The gradle menu should be in the right side of the IDE</p>
-					</section>
-				</section>
-			</div>
-		</div>
+            </section>
+            <section>
+                <h3>Getting help with exercises (Optional)</h3>
+                <p><code>code --install-extension ms-vsliveshare.vsliveshare</code></p>
+                <p>Then click the icon on the left and click share now</p>
+                <p>Send one of us the invite link and we'll try to help you</p>
+            </section>
+            <section>
+                <h3>Other IDEs</h3>
+                <p>If you are using intellij then create a new project from version control with
+                    <code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
+                <p>The gradle menu should be in the right side of the IDE</p>
+            </section>
+            <section>
+                <h1>
+                    The Basics
+                </h1>
+            </section>
+            <section>
+                <h2>Java Vs Python</h2>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Java Vs Python
+                </h4>
+                <br>
+                <div class="comparison">
+                    <div>
+                        <div class="comparison-title">
+                            Java
+                        </div>
+                        <ul class="comparison-points">
+                            <li>
+                                Compiled Language
+                            </li>
+                            <li>
+                                High device compatibility
+                            </li>
+                            <li>
+                                Statically Typed
+                            </li>
+                            <li>
+                                CamelCase syntax
+                            </li>
+                            <li>
+                                Mostly object orientated
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="comparison-title">
+                            Python
+                        </div>
+                        <ul class="comparison-points">
+                            <li>
+                                Interpreted Language
+                            </li>
+                            <li>
+                                Dynamically Typed
+                            </li>
+                            <li>
+                                snake_case syntax
+                            </li>
+                            <li>
+                                Fully object orientated
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    The java main
+                </h4>
+
+                <p class="topic-text">
+                    In java every piece of code you write must be saved in a file with the .java extension, this can be
+                    as simple as "app.java".
+                    Inside this must be a corresponding class of the same name.
+                    <br>
+                    <br>
+                    The entry point of all java based applications is known as the "main".
+                </p>
+
+                <pre>
+                    <code data-trim data-noescape class="language-java">
+                    public class App {
+                        public static void main(String[] args) {
+                            System.out.println("Hello World");
+                        }
+                    }
+                    </code>
+                    </pre>
+                <aside class="notes">
+                    <p>
+                        This is a small hello world example in java
+                    </p>
+                    <ul class="topic-text" style="list-style-type: none">
+                        <li>
+                            Public - Access modifier, these will be covered later on in OOP
+                        </li>
+                        <br>
+                        <li>
+                            Class - Covered in OOP section
+                        </li>
+                        <br>
+                        <li>
+                            Void - Specifies that a function does not return a value.
+                        </li>
+                        <br>
+                        <li>
+                            Static - Specifies that a function is available at class level rather than a class instance level, will be covered more in OOP.
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Types
+                    <span class="fragment current-visible remove " data-fragment-index="0">-  Primitives</span>
+                    <span class="fragment" data-fragment-index="1">-  Instantiation</span>
+                </h4>
+
+                    <pre>
+                    <code data-trim data-noescape class="language-java">
+                    public class App {
+                        public static void main(String[] args) {
+                            
+                        }
+                    }
+                    </code>
+                    </pre>
+
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+</body>
 </html>

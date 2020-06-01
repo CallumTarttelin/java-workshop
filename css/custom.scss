@@ -9,3 +9,55 @@
 code {
   font-family: "JetBrains Mono NL", Hack, monospace;
 }
+
+
+.sub-title {
+  text-align: left;
+  border-bottom: 1px solid white;
+}
+
+.sub-topic {
+  top: 80px !important;
+  text-align: left;
+}
+
+.comparison {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 24px;
+
+  margin: auto;
+
+  &.code {
+    & pre:first-child {
+      margin-right: 10px;
+    }
+  }
+
+  & .comparison-points {
+    font-size: 24px;
+    font-weight: 200;
+  }
+
+  & .comparison-title {
+    margin-bottom: 12px;
+  }
+
+  &:first-child {
+
+  }
+
+}
+
+.topic-text {
+  font-size: 14px !important;
+  text-align: left;
+}
+
+.fragment.current-visible.remove.visible:not(.current-fragment) {
+  display: none;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+}
+
