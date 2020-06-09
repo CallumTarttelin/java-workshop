@@ -72,6 +72,9 @@
                     <code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
                 <p>The gradle menu should be in the right side of the IDE</p>
             </section>
+
+        </section>
+        <section>
             <section>
                 <h1>
                     The Basics
@@ -172,28 +175,124 @@
                         </li>
                         <br>
                         <li>
-                            Static - Specifies that a function is available at class level rather than a class instance level, will be covered more in OOP.
+                            Static - Specifies that a function is available at class level rather than a class instance
+                            level, will be covered more in OOP.
                         </li>
                     </ul>
                 </aside>
             </section>
+            <section>
+                <h2>Types</h2>
+            </section>
             <section class="sub-topic">
                 <h4 class="sub-title">
-                    Types
-                    <span class="fragment current-visible remove " data-fragment-index="0">-  Primitives</span>
-                    <span class="fragment" data-fragment-index="1">-  Instantiation</span>
+                    Types - Primitive
                 </h4>
+                <p class="topic-text">
+                    The most basic java data type, singular purpose of directly holding values.
+                </p>
+                <ul class="full-list">
+                    <li>
+                        <pre class="one-liner"><code data-line-numbers="" data-trim data-noescape
+                                                     class="language-java">boolean aBool = true;</code></pre>
+                    </li>
+                    <li>
+                        <pre class="one-liner"><code data-trim data-noescape
+                                                     class="language-java">
+                            // char type variables require all values to use apostrophes
+                            char goodChar = 'a';
+                            //char badChar = "a";</code></pre>
+                    </li>
+                    <li>
+                        <pre class="one-liner"><code data-trim data-noescape class="language-java">
+                            byte aByte = 10;
+                        </code></pre>
+                    </li>
+                    <li>
+                        <pre class="one-liner"><code data-trim data-noescape class="language-java">
+                            int aInt = 7;
+                        </code></pre>
+                    </li>
+                    <li>
+                        <pre class="one-liner"><code data-trim data-noescape class="language-java">
+                            //any number between -32,768 & 32,768
+                            short goodShort = 25;
+                            //short badShort = 40000;
+                            //short anotherBadShort = -40000;
+                        </code></pre>
+                    </li>
+                    <li>
+                        <pre class="one-liner"><code data-trim data-noescape class="language-java">
+                            //any number between -9,223,372,036,854,775,807 and 9,223,372,036,854,775,807
+                            long goodLong = 40000;
+                            //long badLong = 10000000000;
+                            //long anotherBadLong = -10000000000;
+                        </code></pre>
+                    </li>
+                    <li>
+                        <pre class="one-liner"><code data-trim data-noescape class="language-java">
+                            float aFloat = 10.123456789f;
+                            //output 10.1234567
+                        </code></pre>
+                    </li>
+                    <li>
 
-                    <pre>
-                    <code data-trim data-noescape class="language-java">
-                    public class App {
-                        public static void main(String[] args) {
-                            
-                        }
-                    }
-                    </code>
-                    </pre>
+                        <pre class="one-liner"><code data-trim data-noescape class="language-java">
+                            double aDouble = 10.123456789;
+                            //output 10.123456789
+                        </code></pre>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    <p>Bool - true/false</p>
+                    <p>Byte</p>
+                    <p>Int - 0, 1, 2</p>
+                    <p>Short - any number between -32,768 & 32,768</p>
+                    <p>Long - any number between -9,223,372,036,854,775,807 and 9,223,372,036,854,775,807</p>
+                    <p>Float - any decimal number up to 7 decimal digits</p>
+                    <p>Double - any decimal number up to 15 decimal digits</p>
+                </aside>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Types - Non primitives (reference variables)
+                </h4>
+                <p class="topic-text">
+                    The following do not directly store values, instead containing references to memory addresses
+                </p>
+                <ul class="full-list">
+                    <li>
+                        <pre class="one-liner"><code data-trim data-noescape class="language-java">
+                            // string uses titlecase over camelcase due to being an object
+                            // assign through string literal
+                            String aString = "This is a test string";
+                            // assign using the "new" keyword
+                            String anotherString = new String("Another string");
+                        </code></pre>
+                    </li>
+                    <li>
+                        <pre class="one-liner"><code data-trim data-noescape class="language-java">
+                            // instantiate an array using fixed length notation
+                            int[] intArray = new int[10];
+                            intArray[2] = 5;
+                            intArray[7] = 25;
+                            intArray[9] = 50;
+                            // output [0, 0, 5, 0, 0, 0, 0, 25, 0, 50]
 
+                            // instantiate an array using array literal
+                            String[] stringArray = {"first", "second", "third", "etc"};
+                            // output [first, second, third, etc]
+                            // this would raise "array index out of bounds" error, you cannot assign to an index that doesn't exist
+                            stringArray[7] = "temp";
+                        </code></pre>
+                    </li>
+                    <li>Classes - Will be explained in OOP</li>
+                    <li>Objects - Will be explained in OOP</li>
+                    <li>Interfaces - Will be explained in OOP</li>
+                </ul>
+                <aside class="notes">
+                    Strings - Immutable
+                </aside>
             </section>
         </section>
     </div>

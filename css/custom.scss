@@ -23,10 +23,14 @@ code {
 
 .comparison {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   padding: 8px 24px;
 
   margin: auto;
+
+  div:first-child {
+    padding-right: 80px;
+  }
 
   &.code {
     & pre:first-child {
@@ -59,5 +63,25 @@ code {
   height: 0;
   line-height: 0;
   font-size: 0;
+}
+
+.slide-full {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.one-liner {
+  margin: 0 0 10px !important;
+}
+
+.full-list {
+  font-size: 18px;
+  line-height: 30px;
+  width: 100%;
+  list-style-type: none !important;
+  margin-left: 0 !important;
 }
 
