@@ -5,6 +5,17 @@ package fizzbuzz;
 
 public class App {
     public static void main(String[] args) {
+
         System.out.println(new FizzBuzz().fizzbuzz(20));
+
+        int numberOne = 10;
+        int numberTwo = 20;
+
+        int sum = numberOne + numberTwo;
+        int sub = numberOne - numberTwo;
+        int divide = numberOne / numberTwo;
+        int multi = numberOne * numberTwo;
+        int mod = numberOne % numberTwo;
+
     }
 }

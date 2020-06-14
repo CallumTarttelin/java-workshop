@@ -7,7 +7,7 @@ The game is each player counts up from 1, if the number is divisible by three th
 if the number is divisible by 5 they say "buzz" instead, if it's divisible by both they say "fizzbuzz".
 
 This would give an output such as: \
-1, 2, fizz, 4, buzz, 5, fizz, 7, 8, fizz, buzz, 11, fizz, 13, 14, fizzbuzz, 16, 17, fizz, 19, buzz...
+1, 2, fizz, 4, buzz, fizz, 7, 8, fizz, buzz, 11, fizz, 13, 14, fizzbuzz, 16, 17, fizz, 19, buzz...
 
 This is now used as a common screening question for technical interviews to filter out bad candidates.
 
