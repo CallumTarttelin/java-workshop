@@ -23,4 +23,4 @@ Then `./gradlew check` will test your solution and give you details of anything 
 
 ## Example solution
 
-If you get stuck `src/test/java/rover/EightBallDemo.java` has an example solution written by Jamie which passes all the tests.
+If you get stuck `src/main/java/rover/EightBallDemo.java` has an example solution written by Jamie which passes all the tests.
