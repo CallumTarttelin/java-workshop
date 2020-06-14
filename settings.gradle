@@ -8,7 +8,8 @@
  */
 
 rootProject.name = 'java-workshop'
-include 'helloworld', 'eightball'
+
+include 'helloworld', 'fizzbuzz', 'fibonacci', 'eightball'
 
 // Use this to change repositories if required
 //gradle.allprojects { project ->
