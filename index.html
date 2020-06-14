@@ -36,7 +36,11 @@
             </section>
             <section>
                 <h3>Getting exercises in vscode</h3>
-                <pre><code data-trim data-noescape class="language-bash">
+                <div>
+                    <div class="code-header">
+                        <h3>Run in cmd/terminal</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-noescape class="language-bash">
                     git clone https://github.com/CallumTarttelin/java-workshop.git
 
                     code --install-extension vscjava.vscode-java-pack
@@ -45,31 +49,48 @@
 
                     code java-workshop
                 </code></pre>
-
+                </div>
             </section>
             <section>
                 <h3>Running examples from terminal</h3>
-                <p>
-                    <span class="hotkey">ctrl</span>+<span class="hotkey">shift</span>+<span class="hotkey">i</span>
-                    from inside vscode or in terminal
-                </p>
-                <pre><code data-trim data-noescape class="language-bash">
-                    ./gradlew project:task
+                <div>
+                    <div class="code-header">
+                        <h3>
+                            <span class="hotkey">ctrl</span> +
+                            <span class="hotkey">shift</span> +
+                            <span class="hotkey">i</span>
+                            from inside vscode or in cmd/terminal
+                        </h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-noescape class="language-bash">
+                        ./gradlew project:task
 
-                    ./gradlew helloworld:run
-                </code></pre>
+                        ./gradlew helloworld:run
+                    </code></pre>
+                </div>
             </section>
             <section>
                 <h3>Getting help with exercises (Optional)</h3>
-                <p><code>code --install-extension ms-vsliveshare.vsliveshare</code></p>
-                <p>Then click the icon on the left and click share now</p>
+                <div>
+                    <div class="code-header">
+                        <h3>
+                            <span class="hotkey">ctrl</span> +
+                            <span class="hotkey">shift</span> +
+                            <span class="hotkey">i</span>
+                            from inside vscode or in cmd/terminal
+                        </h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-noescape class="language-bash">
+                        code --install-extension ms-vsliveshare.vsliveshare
+                    </code></pre>
+                </div>
+                <p>Click the icon on the left and click share now</p>
                 <p>Send one of us the invite link and we'll try to help you</p>
             </section>
             <section>
                 <h3>Other IDEs</h3>
-                <p>If you are using intellij then create a new project from version control with
-                    <code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
-                <p>The gradle menu should be in the right side of the IDE</p>
+                <p>If you are using intellij then create a new project from version control with url</p>
+                <p><code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
             </section>
         </section>
         <section>
@@ -97,30 +118,45 @@
                     <span class="fragment" data-fragment-index="1">+ Methods</span>
                 </h3>
                 <div class="r-stack">
-                    <pre class="fragment fade-out" data-fragment-index="0"><code data-trim class="language-java">
-                        public class Cat {
-                        }
-                    </code></pre>
-                    <pre class="fragment current-visible" data-fragment-index="0"><code data-trim class="language-java">
-                        public class Cat {
-                            public String name;
-                            public boolean inside;
-                        }
-                    </code></pre>
-                    <pre class="fragment" data-fragment-index="1"><code data-trim class="language-java">
-                        public class Cat {
-                            public String name;
-                            public int age;
-
-                            public boolean isAdult() {
-                                return this.age > 1;
+                    <div class="fragment fade-out code-header-container" data-fragment-index="0">
+                        <div class="code-header">
+                            <h3>Cat.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            public class Cat {
                             }
-
-                            public void rename(String name) {
-                                this.name = name;
+                        </code></pre>
+                    </div>
+                    <div class="fragment current-visible code-header-container" data-fragment-index="0">
+                        <div class="code-header">
+                            <h3>Cat.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            public class Cat {
+                                public String name;
+                                public boolean inside;
                             }
-                        }
-                    </code></pre>
+                        </code></pre>
+                    </div>
+                    <div class="fragment code-header-container" data-fragment-index="1">
+                        <div class="code-header">
+                            <h3>App.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            public class Cat {
+                                public String name;
+                                public int age;
+
+                                public boolean isAdult() {
+                                    return this.age > 1;
+                                }
+
+                                public void rename(String name) {
+                                    this.name = name;
+                                }
+                            }
+                        </code></pre>
+                    </div>
                 </div>
 
                 <aside class="notes">
@@ -128,15 +164,55 @@
                     <ul>Classes by themselves aren't that useful</ul>
                     <ul>Classes can hold fields to show properties of a class</ul>
                     <ul>Classes can also have methods to show actions of a class</ul>
+                    <ul>These fields and methods are usually in camelCase</ul>
                     <ul>These work as variables and functions associated with the class</ul>
                 </aside>
             </section>
             <section>
                 <h2>Objects</h2>
 
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>App.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim class="language-java">
+                        Cat cat = new Cat();
+                        Cat otherCat = new Cat();
+
+                        cat.rename("Cat.");
+
+                        System.out.println(cat.name);
+                        // Cat.
+                        System.out.println(otherCat.name);
+                        // null
+                    </code></pre>
+                </div>
+
                 <aside class="notes">
                     <ul>Objects are instances of classes</ul>
                     <ul>Created with the new keyword</ul>
+                    <ul>You can then access fields and methods for this instance of the class</ul>
+                </aside>
+            </section>
+            <section>
+                <h2>Creating objects</h2>
+
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>Cat.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim class="language-java">
+                        public Cat(String name, int age) {
+                            this.name = name;
+                            this.age = age;
+                        }
+                    </code></pre>
+                </div>
+
+                <aside class="notes">
+                    <ul>Objects are instances of classes</ul>
+                    <ul>Created with the new keyword</ul>
+                    <ul>You can then access fields and methods for this instance of the class</ul>
                 </aside>
             </section>
         </section>

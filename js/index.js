@@ -25,6 +25,8 @@ let Reveal = Deck;
  * });
  */
 
+// {"action": "slide", "data": "1,2,3"}
+
 let enqueuedAPICalls = [];
 
 Reveal.initialize = options => {
