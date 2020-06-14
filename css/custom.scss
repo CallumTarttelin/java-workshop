@@ -58,9 +58,14 @@ code {
   text-align: left;
 }
 
+.fragment.current-visible.remove.visible.current-fragment {
+  display: contents;
+}
+
 .fragment.current-visible.remove.visible:not(.current-fragment) {
   display: none;
   height: 0;
+  width: 0;
   line-height: 0;
   font-size: 0;
 }
@@ -83,5 +88,18 @@ code {
   width: 100%;
   list-style-type: none !important;
   margin-left: 0 !important;
+}
+
+.fragments {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  & .fragment {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+  }
 }
 
