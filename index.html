@@ -1,94 +1,238 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/custom.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/custom.css">
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h2>June 2020 Java Workshop</h2>
-				</section>
-				<section>
-					<section><h2>Set Up</h2></section>
-					<section>
-						<h3>Accessing the slides</h3>
-						<a href="https://callumtarttelin.github.io/java-workshop">https://callumtarttelin.github.io/java-workshop</a>
-					</section>
-					<section>
-						<h3>Required Software</h3>
-						<ul>
-							<li><a href="https://adoptopenjdk.net/releases.html">JDK > 11, demos tested in 11 and 14</a></li>
-							<li><a href="https://git-scm.com/downloads">git</a></li>
-							<li><a href="https://code.visualstudio.com/Download">IDE, examples will be in vscode, so will sys dev 2</a></li>
-						</ul>
-					</section>
-					<section>
-						<h3>Getting exercises in vscode</h3>
-						<pre><code data-trim data-noescape class="language-bash">
-							git clone https://github.com/CallumTarttelin/java-workshop.git
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>June 2020 Java Workshop</h2>
+        </section>
+        <section>
+            <section><h2>Set Up</h2></section>
+            <section>
+                <h3>Accessing the slides</h3>
+                <a href="https://callumtarttelin.github.io/java-workshop">https://callumtarttelin.github.io/java-workshop</a>
+            </section>
+            <section>
+                <h3>Required Software</h3>
+                <ul>
+                    <li><a href="https://adoptopenjdk.net/releases.html">JDK > 11, demos tested in 11 and 14</a></li>
+                    <li><a href="https://git-scm.com/downloads">git</a></li>
+                    <li><a href="https://code.visualstudio.com/Download">IDE, examples will be in vscode, so will sys dev 2</a></li>
+                </ul>
+            </section>
+            <section>
+                <h3>Getting exercises in vscode</h3>
+                <div>
+                    <div class="code-header">
+                        <h3>Run in cmd/terminal</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-noescape class="language-bash">
+                    git clone https://github.com/CallumTarttelin/java-workshop.git
 
-							code --install-extension vscjava.vscode-java-pack
+                    code --install-extension vscjava.vscode-java-pack
 
-							code --install-extension richardwillis.vscode-gradle
+                    code --install-extension richardwillis.vscode-gradle
 
-							code java-workshop
-						</code></pre>
+                    code java-workshop
+                </code></pre>
+                </div>
+            </section>
+            <section>
+                <h3>Running examples from terminal</h3>
+                <div>
+                    <div class="code-header">
+                        <h3>
+                            <span class="hotkey">ctrl</span> +
+                            <span class="hotkey">shift</span> +
+                            <span class="hotkey">i</span>
+                            from inside vscode or in cmd/terminal
+                        </h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-noescape class="language-bash">
+                        ./gradlew project:task
 
-					</section>
-					<section>
-						<h3>Running examples from terminal</h3>
-						<p>
-							<span class="hotkey">ctrl</span>+<span class="hotkey">shift</span>+<span class="hotkey">i</span>
-							from inside vscode or in terminal
-						</p>
-						<pre><code data-trim data-noescape class="language-bash">
-							./gradlew project:task
+                        ./gradlew helloworld:run
+                    </code></pre>
+                </div>
+            </section>
+            <section>
+                <h3>Getting help with exercises (Optional)</h3>
+                <div>
+                    <div class="code-header">
+                        <h3>
+                            <span class="hotkey">ctrl</span> +
+                            <span class="hotkey">shift</span> +
+                            <span class="hotkey">i</span>
+                            from inside vscode or in cmd/terminal
+                        </h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-noescape class="language-bash">
+                        code --install-extension ms-vsliveshare.vsliveshare
+                    </code></pre>
+                </div>
+                <p>Click the icon on the left and click share now</p>
+                <p>Send one of us the invite link and we'll try to help you</p>
+            </section>
+            <section>
+                <h3>Other IDEs</h3>
+                <p>If you are using intellij then create a new project from version control with url</p>
+                <p><code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
+            </section>
+        </section>
+        <section>
+            <h1>OOP</h1>
+            <p class="fragment">
+                Object-oriented programming is a programming paradigm based around objects.
+                The objects represent things with fields and methods.
+            </p>
+            <aside class="notes">
+                <ul>
+                    <li>Object-oriented programming is a paradigm </li>
+                    <li>Java is a popular example of a general purpose object oriented language</li>
+                    <li>Java, unlike python, is not a pure OO language because not everything is an object</li>
+                </ul>
+            </aside>
+        </section>
+        <section>
+            <section>
+                <h2>Classes, Fields, Methods, and Objects</h2>
+            </section>
+            <section>
+                <h3>
+                    Classes
+                    <span class="fragment" data-fragment-index="0">+ Fields</span>
+                    <span class="fragment" data-fragment-index="1">+ Methods</span>
+                </h3>
+                <div class="r-stack">
+                    <div class="fragment fade-out code-header-container" data-fragment-index="0">
+                        <div class="code-header">
+                            <h3>Cat.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            public class Cat {
+                            }
+                        </code></pre>
+                    </div>
+                    <div class="fragment current-visible code-header-container" data-fragment-index="0">
+                        <div class="code-header">
+                            <h3>Cat.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            public class Cat {
+                                public String name;
+                                public boolean inside;
+                            }
+                        </code></pre>
+                    </div>
+                    <div class="fragment code-header-container" data-fragment-index="1">
+                        <div class="code-header">
+                            <h3>App.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            public class Cat {
+                                public String name;
+                                public int age;
 
-							./gradlew helloworld:run
-						</code></pre>
-					</section>
-					<section>
-						 <h3>Getting help with exercises (Optional)</h3>
-						<p><code>code --install-extension ms-vsliveshare.vsliveshare</code></p>
-						<p>Then click the icon on the left and click share now</p>
-						<p>Send one of us the invite link and we'll try to help you</p>
-					</section>
-					<section>
-						<h3>Other IDEs</h3>
-						<p>If you are using intellij then create a new project from version control with
-							<code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
-						<p>The gradle menu should be in the right side of the IDE</p>
-					</section>
-				</section>
-			</div>
-		</div>
+                                public boolean isAdult() {
+                                    return this.age > 1;
+                                }
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+                                public void rename(String name) {
+                                    this.name = name;
+                                }
+                            }
+                        </code></pre>
+                    </div>
+                </div>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+                <aside class="notes">
+                    <ul>Classes usually are named in PascalCase</ul>
+                    <ul>Classes by themselves aren't that useful</ul>
+                    <ul>Classes can hold fields to show properties of a class</ul>
+                    <ul>Classes can also have methods to show actions of a class</ul>
+                    <ul>These fields and methods are usually in camelCase</ul>
+                    <ul>These work as variables and functions associated with the class</ul>
+                </aside>
+            </section>
+            <section>
+                <h2>Objects</h2>
+
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>App.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim class="language-java">
+                        Cat cat = new Cat();
+                        Cat otherCat = new Cat();
+
+                        cat.rename("Cat.");
+
+                        System.out.println(cat.name);
+                        // Cat.
+                        System.out.println(otherCat.name);
+                        // null
+                    </code></pre>
+                </div>
+
+                <aside class="notes">
+                    <ul>Objects are instances of classes</ul>
+                    <ul>Created with the new keyword</ul>
+                    <ul>You can then access fields and methods for this instance of the class</ul>
+                </aside>
+            </section>
+            <section>
+                <h2>Creating objects</h2>
+
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>Cat.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim class="language-java">
+                        public Cat(String name, int age) {
+                            this.name = name;
+                            this.age = age;
+                        }
+                    </code></pre>
+                </div>
+
+                <aside class="notes">
+                    <ul>Objects are instances of classes</ul>
+                    <ul>Created with the new keyword</ul>
+                    <ul>You can then access fields and methods for this instance of the class</ul>
+                </aside>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+  // More info about initialization & config:
+  // - https://revealjs.com/initialization/
+  // - https://revealjs.com/config/
+  Reveal.initialize({
+    hash: true,
+
+    // Learn about plugins: https://revealjs.com/plugins/
+    plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+  });
+</script>
+</body>
 </html>

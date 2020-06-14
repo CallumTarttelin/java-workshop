@@ -6,6 +6,35 @@
   border-radius: 0.2em;
 }
 
+.code-header {
+  display: block;
+  text-align: left;
+  background: #272822;
+  box-shadow: 0 5px 15px rgba(0,0,0,.15);
+  width: 90%;
+  position: relative;
+  margin: 20px auto 0 auto;
+}
+
+.code-header h3 {
+  font-size: 0.5em !important;
+  margin-bottom: 0 !important;
+  text-transform: none !important;
+  padding: 5px;
+  color: #bbb !important;
+  opacity: 60%;
+  font-weight: 200 !important;
+}
+
+.code-with-header {
+  margin-top: 0 !important;
+  border-top: 1px solid #aaaaaa;
+}
+
+.code-header-container {
+  width: 100%;
+}
+
 code {
-  font-family: "JetBrains Mono NL", Hack, monospace;
+  font-family: "JetBrains Mono NL", Hack, monospace !important;
 }
