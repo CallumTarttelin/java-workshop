@@ -31,7 +31,8 @@
                 <ul>
                     <li><a href="https://adoptopenjdk.net/releases.html">JDK > 11, demos tested in 11 and 14</a></li>
                     <li><a href="https://git-scm.com/downloads">git</a></li>
-                    <li><a href="https://code.visualstudio.com/Download">IDE, examples will be in vscode, so will sys dev 2</a></li>
+                    <li><a href="https://code.visualstudio.com/Download">IDE, examples will be in vscode, so will sys
+                        dev 2</a></li>
                 </ul>
             </section>
             <section>
@@ -40,16 +41,30 @@
                     <div class="code-header">
                         <h3>Run in cmd/terminal</h3>
                     </div>
-                    <pre class="code-with-header"><code data-trim data-noescape class="language-bash">
+                    <pre class="code-with-header">
+                        <code data-trim data-noescape class="language-bash">
                     git clone https://github.com/CallumTarttelin/java-workshop.git
 
                     code --install-extension vscjava.vscode-java-pack
 
                     code --install-extension richardwillis.vscode-gradle
 
+							code java-workshop
+						</code></pre>
+
+                </div>
+            </section>
+            <section>
+                <h3>Running examples from terminal</h3>
+                <p>
+                    <span class="hotkey">ctrl</span>+<span class="hotkey">shift</span>+<span class="hotkey">i</span>
+                    from inside vscode or in terminal
+                </p>
+                <pre><code data-trim data-noescape class="language-bash">
+							./gradlew project:task
                     code java-workshop
                 </code></pre>
-                </div>
+
             </section>
             <section>
                 <h3>Running examples from terminal</h3>
@@ -62,177 +77,874 @@
                             from inside vscode or in cmd/terminal
                         </h3>
                     </div>
-                    <pre class="code-with-header"><code data-trim data-noescape class="language-bash">
+                    <pre class="code-with-header">
+                        <code data-trim data-noescape class="language-bash">
                         ./gradlew project:task
-
                         ./gradlew helloworld:run
-                    </code></pre>
+						</code>
+                    </pre>
                 </div>
             </section>
             <section>
                 <h3>Getting help with exercises (Optional)</h3>
-                <div>
-                    <div class="code-header">
-                        <h3>
-                            <span class="hotkey">ctrl</span> +
-                            <span class="hotkey">shift</span> +
-                            <span class="hotkey">i</span>
-                            from inside vscode or in cmd/terminal
-                        </h3>
-                    </div>
-                    <pre class="code-with-header"><code data-trim data-noescape class="language-bash">
-                        code --install-extension ms-vsliveshare.vsliveshare
-                    </code></pre>
-                </div>
-                <p>Click the icon on the left and click share now</p>
+                <p><code>code --install-extension ms-vsliveshare.vsliveshare</code></p>
+                <p>Then click the icon on the left and click share now</p>
                 <p>Send one of us the invite link and we'll try to help you</p>
             </section>
             <section>
                 <h3>Other IDEs</h3>
-                <p>If you are using intellij then create a new project from version control with url</p>
-                <p><code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
+                <p>If you are using intellij then create a new project from version control with
+                    <code>https://github.com/CallumTarttelin/java-workshop.git</code></p>
+                <p>The gradle menu should be in the right side of the IDE</p>
             </section>
-        </section>
-        <section>
-            <h1>OOP</h1>
-            <p class="fragment">
-                Object-oriented programming is a programming paradigm based around objects.
-                The objects represent things with fields and methods.
-            </p>
-            <aside class="notes">
-                <ul>
-                    <li>Object-oriented programming is a paradigm </li>
-                    <li>Java is a popular example of a general purpose object oriented language</li>
-                    <li>Java, unlike python, is not a pure OO language because not everything is an object</li>
-                </ul>
-            </aside>
+
         </section>
         <section>
             <section>
-                <h2>Classes, Fields, Methods, and Objects</h2>
+                <h1>
+                    The Basics
+                </h1>
             </section>
             <section>
-                <h3>
-                    Classes
-                    <span class="fragment" data-fragment-index="0">+ Fields</span>
-                    <span class="fragment" data-fragment-index="1">+ Methods</span>
-                </h3>
-                <div class="r-stack">
-                    <div class="fragment fade-out code-header-container" data-fragment-index="0">
-                        <div class="code-header">
-                            <h3>Cat.java</h3>
+                <h2>Java Vs Python</h2>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Java Vs Python
+                </h4>
+                <br>
+                <div class="comparison">
+                    <div>
+                        <div class="comparison-title">
+                            Java
                         </div>
-                        <pre class="code-with-header"><code data-trim class="language-java">
-                            public class Cat {
-                            }
-                        </code></pre>
+                        <ul class="comparison-points">
+                            <li>
+                                Compiled Language*
+                            </li>
+                            <li>
+                                High device compatibility
+                            </li>
+                            <li>
+                                Statically Typed
+                            </li>
+                            <li>
+                                camelCase naming convention
+                            </li>
+                            <li>
+                                Mostly object orientated
+                            </li>
+                        </ul>
                     </div>
-                    <div class="fragment current-visible code-header-container" data-fragment-index="0">
-                        <div class="code-header">
-                            <h3>Cat.java</h3>
+                    <div>
+                        <div class="comparison-title">
+                            Python
                         </div>
-                        <pre class="code-with-header"><code data-trim class="language-java">
-                            public class Cat {
-                                public String name;
-                                public boolean inside;
-                            }
-                        </code></pre>
-                    </div>
-                    <div class="fragment code-header-container" data-fragment-index="1">
-                        <div class="code-header">
-                            <h3>App.java</h3>
-                        </div>
-                        <pre class="code-with-header"><code data-trim class="language-java">
-                            public class Cat {
-                                public String name;
-                                public int age;
-
-                                public boolean isAdult() {
-                                    return this.age > 1;
-                                }
-
-                                public void rename(String name) {
-                                    this.name = name;
-                                }
-                            }
-                        </code></pre>
+                        <ul class="comparison-points">
+                            <li>
+                                Interpreted Language
+                            </li>
+                            <li>
+                                Dynamically Typed
+                            </li>
+                            <li>
+                                snake_case naming convention
+                            </li>
+                            <li>
+                                Everything is an object
+                            </li>
+                        </ul>
                     </div>
                 </div>
-
+                <small style="font-size: 12px; margin-top: 40px">*Kinda compiled/interpreted</small>
                 <aside class="notes">
-                    <ul>Classes usually are named in PascalCase</ul>
-                    <ul>Classes by themselves aren't that useful</ul>
-                    <ul>Classes can hold fields to show properties of a class</ul>
-                    <ul>Classes can also have methods to show actions of a class</ul>
-                    <ul>These fields and methods are usually in camelCase</ul>
-                    <ul>These work as variables and functions associated with the class</ul>
+                    <ul>
+                        <li>
+                            High device compat - Due to java programs requirement of running on the "Java Virtual
+                            Machine" (JVM) it means that any device that has a JVM implementation can run java apps
+                            natively. Dev's don't have to worry about underlying hardware
+                        </li>
+                    </ul>
                 </aside>
-            </section>
-            <section>
-                <h2>Objects</h2>
 
-                <div class="code-header-container">
+
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Hello World
+                </h4>
+
+                <p class="topic-text">
+                    In java every piece of code you write must be saved in a file with the .java extension, this can be
+                    as simple as "app.java".
+                    Inside this must be a corresponding class of the same name.
+                    <br>
+                    <br>
+                    The entry point of all java based applications is known as the "main".
+                </p>
+                <div>
                     <div class="code-header">
                         <h3>App.java</h3>
                     </div>
-                    <pre class="code-with-header"><code data-trim class="language-java">
-                        Cat cat = new Cat();
-                        Cat otherCat = new Cat();
 
-                        cat.rename("Cat.");
-
-                        System.out.println(cat.name);
-                        // Cat.
-                        System.out.println(otherCat.name);
-                        // null
-                    </code></pre>
+                    <pre class="code-with-header">
+                    <code style="font-size: 16px" data-trim data-noescape data-line-numbers="" class="language-java">
+                        package basics;
+                        public class App {
+                            public static void main(String[] args) {
+                                System.out.println("Hello World");
+                            }
+                        }
+                    </code>
+                    </pre>
                 </div>
 
                 <aside class="notes">
-                    <ul>Objects are instances of classes</ul>
-                    <ul>Created with the new keyword</ul>
-                    <ul>You can then access fields and methods for this instance of the class</ul>
+                    <p>
+                        This is a small hello world example in java
+                    </p>
+                    <ul class="topic-text" style="list-style-type: none">
+                        <li>
+                            Public - Access modifier, these will be covered later on in OOP
+                        </li>
+                        <br>
+                        <li>
+                            Class - Covered in OOP section
+                        </li>
+                        <br>
+                        <li>
+                            Void - Specifies that a function does not return a value.
+                        </li>
+                        <br>
+                        <li>
+                            Static - Specifies that a function is available at class level rather than a class instance
+                            level, will be covered more in OOP.
+                        </li>
+                    </ul>
                 </aside>
             </section>
             <section>
-                <h2>Creating objects</h2>
+                <h2>Types</h2>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Types - Primitive
+                </h4>
+                <p class="topic-text">
+                    The most basic java data type, singular purpose of directly holding values.
+                </p>
+                <pre style="font-size: 14px">
+                    <code data-trim data-noescape data-line-numbers="|1|3|5|7|9-10|12-13|15-16|18-19|1-19"
+                          class="language-java">
+                        boolean aBool = true;
 
-                <div class="code-header-container">
-                    <div class="code-header">
-                        <h3>Cat.java</h3>
-                    </div>
-                    <pre class="code-with-header"><code data-trim class="language-java">
-                        public Cat(String name, int age) {
-                            this.name = name;
-                            this.age = age;
-                        }
-                    </code></pre>
-                </div>
+                        char goodChar = 'a';
 
+                        byte aByte = 10;
+
+                        int aInt = 7;
+
+                        //any number between -32,768 & 32,768
+                        short goodShort = 25;
+
+                        //any number between -9,223,372,036,854,775,807 and 9,223,372,036,854,775,807
+                        long goodLong = 40000;
+
+                        float aFloat = 10.123456789f;
+                        //output 10.1234567
+
+                        double aDouble = 10.123456789;
+                        //output 10.123456789
+                    </code>
+                </pre>
                 <aside class="notes">
-                    <ul>Objects are instances of classes</ul>
-                    <ul>Created with the new keyword</ul>
-                    <ul>You can then access fields and methods for this instance of the class</ul>
+                    <ul>
+                        <li>
+                            <p>Bool - true/false</p>
+                        </li>
+                        <li>
+                            <p>Char - require all values to use apostrophes</p>
+                        </li>
+                        <li>
+                            <p>Int - 0, 1, 2</p>
+                        </li>
+                        <li>
+                            <p>Short - any number between -32,768 & 32,768</p>
+                        </li>
+                        <li>
+                            <p>
+                                Long - 64 bit signed two's compliment integer any number between
+                                -9,223,372,036,854,775,807 and
+                                9,223,372,036,854,775,807
+                            </p></li>
+                        <li>
+                            <p>Float - any decimal number up to 7 decimal digits</p>
+                        </li>
+                        <li>
+                            <p>Double - any decimal number up to 15 decimal digits</p>
+                        </li>
+                    </ul>
+                    <p></p>
+
                 </aside>
             </section>
+            <section>
+                <h2>
+                    Methods
+                </h2>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Methods
+                </h4>
+                <div class="fragment current-visible" data-fragment-index="0">
+                    <div class="code-header">
+                        <h3>
+                            Methods.java
+                        </h3>
+
+                    </div>
+                    <pre class="code-with-header" style="font-size: 14px">
+                        <code data-trim data-noescape class="language-java">
+                            public class Methods {
+
+                                public static void main(String[] args) {
+                                    int anInt = returnInt();
+                                    System.out.println(anInt);
+                                    // Output:
+                                    // 1025
+                                }
+
+                                private static int returnInt() {
+                                    return 1025;
+                                }
+
+                            }
+                        </code>
+                    </pre>
+                </div>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Static - Methods belong to the class and not object instances of the class
+
+                        </li>
+                        <li>
+                            Return type - All methods need a return type signature, main has void as it does not return
+                            anything
+
+                        </li>
+                        <li>
+                            Private - These are methods that can be used in the same class.
+
+                        </li>
+                        <li>
+                            Public - Visible to all other classes (can be used by)
+
+                        </li>
+                        <li>
+                            Main - Main methods must always have public static void
+
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>Control Statements</h2>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    <span>Control statements</span>
+                    <span class="fragments">
+                        <span class="fragment current-visible fade-out remove" style="top: 2px" data-fragment-index="0"> - If</span>
+                        <span class="fragment current-visible fade-out remove" style="top: 2px" data-fragment-index="1"> - For</span>
+                        <span class="fragment current-visible fade-out remove" style="top: 2px" data-fragment-index="2"> - While</span>
+                        <span class="fragment current-visible fade-out remove" style="top: 2px" data-fragment-index="3"> - Do While</span>
+                        <span class="fragment current-visible fade-out remove" style="top: 2px" data-fragment-index="4"> - Switch</span>
+                    </span>
+                </h4>
+                <div class="fragments">
+                    <pre class="fragment current-visible" data-fragment-index="0" style="font-size: 14px">
+                        <code data-trim data-noescape class="language-java">
+                            int randomNumber = getRandomNumber(1, 10);
+                            if (randomNumber > 7) {
+                                System.out.println("The random number was greater than 7");
+                            } else if (randomNumber >= 3) {
+                                System.out.println("The random number was greater than or equal to 3 but less than 7");
+                            } else {
+                                System.out.println("The random number was less than 3");
+
+                            }
+                        </code>
+                    </pre>
+                    <pre class="fragment current-visible" data-fragment-index="1" style="font-size: 14px">
+                        <code data-trim data-noescape data-line-numbers="" class="language-java">
+                            for (int i = 0; i < 10; i++) {
+                                System.out.println(i);
+                            }
+
+                            //Output:
+                            //0
+                            //1
+                            //2
+                            //3
+                            //4
+                            //5
+                            //6
+                            //7
+                            //8
+                            //9
+                        </code>
+                    </pre>
+                    <pre class="fragment current-visible" data-fragment-index="2" style="font-size: 14px">
+                        <code data-trim data-noescape data-line-numbers="" class="language-java">
+                            int count = 0;
+                            int number = 10;
+                            while (number > 4) {
+                                count++;
+                                number = getRandomNumber(1, 10);
+                                System.out.println("New random number: " + number);
+                            }
+                            System.out.println("It took " + count + " tries to find a number not greater than 4.");
+
+                            //Output:
+                            //New random number: 6
+                            //New random number: 8
+                            //New random number: 2
+                            //It took 3 tries to find a number not greater than 4.
+                        </code>
+                    </pre>
+                    <pre class="fragment current-visible" data-fragment-index="3" style="font-size: 14px">
+                        <code data-trim data-noescape data-line-numbers="" class="language-java">
+                            int number = 10;
+                            do {
+                                System.out.println("The number might be less than 5, I haven't checked yet");
+                            } while ( number < 5);
+                            // Output:
+                            // "The number might be less than 5, I haven't checked yet"
+
+                            while (number < 5) {
+                                System.out.println("The number is less than 5");
+                            }
+                            //Output:
+                            //Nothing
+                        </code>
+                    </pre>
+                    <pre class="fragment current-visible" data-fragment-index="4" style="font-size: 14px">
+                        <code data-trim data-noescape data-line-numbers="" class="language-java">
+                            char letter = 'a';
+                            switch(letter) {
+                                case 'a':
+                                    System.out.println("The letter was a");
+                                case 'b':
+                                    System.out.println("The letter was b");
+                                default:
+                                    System.out.println("The letter was not a or b");
+                            }
+                            //Output:
+                            //The letter was a
+                        </code>
+                    </pre>
+                </div>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            While - Will check the condition and then run the code
+                        </li>
+                        <li>
+                            Do While - runs the code once then will check the condition
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <section>
+                    Basic Maths
+                </section>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Basic Maths
+                </h4>
+                <pre>
+                <code data-trim data-noescape data-line-numbers="" class="language-java">
+                    int numberOne = 10;
+                    int numberTwo = 20;
+
+                    int sum = numberOne + numberTwo;
+                    int sub = numberOne - numberTwo;
+                    int divide = numberOne / numberTwo;
+                    int multi = numberOne * numberTwo;
+                    int mod = numberOne % numberTwo;
+                </code>
+            </pre>
+            </section>
         </section>
+        <section>
+            <section>
+                <h2>
+                    Exercise - Fibonacci
+                </h2>
+            </section>
+
+
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Fibonacci - Question
+                </h4>
+                <div style="font-size: 16px">
+                    <p>
+                        A sequence of numbers where the current number (n) in addition to the previous number (n - 1)
+                        creates the next number (n + 1).
+                    </p>
+                    <p>
+                        The first 6 numbers in this sequence are as follows: 0, 1, 1, 2, 3, 5
+                    </p>
+                    <pre style="font-size: 18px">
+                     <code data-trim data-noescape data-line-numbers="">
+                        package basics;
+
+                        public class FibonacciSample {
+
+                            public static void main(String[] args) {
+                                FibonacciSample fibonacciSample = new FibonacciSample();
+                                long number = 10;
+                                System.out.println(fibonacciSample.fib(number));
+                            }
+
+                            // returns the number in the Fibonacci sequence
+                            public long fib(long n) {
+                                return n;
+                            }
+                        }
+                    </code>
+                </pre>
+                </div>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    A fibonacci solution
+                </h4>
+                <div class="fragment current-visible" data-fragment-index="0">
+                    <div class="code-header">
+                        <h3>FibonacciSample.java</h3>
+                    </div>
+                    <pre class=" code-with-header" style="font-size: 16px">
+                    <code class="language-java" data-trim data-noescape data-line-numbers="">
+                        package basics;
+
+                        public class FibonacciSample {
+
+                            public static void main(String[] args) {
+                                FibonacciSample fibonacciSample = new FibonacciSample();
+                                long number = 10;
+                                System.out.println(fibonacciSample.fib(number));
+                            }
+
+                            // returns the number in the Fibonacci sequence
+                            public long fib(long n) {
+                                if (n < 2) {
+                                    return n;
+                                } else {
+                                    return fib(n - 1) + fib(n - 2);
+                                }
+                            }
+                        }
+                    </code>
+                </pre>
+                </div>
+
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>More Types</h2>
+
+            </section>
+
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Types - Non primitives (reference variables)
+                </h4>
+                <p class="topic-text">
+                    The following do not directly store values, instead containing references to memory addresses
+                </p>
+                <ul style="font-size: 30px">
+                    <li>
+                        Classes
+                    </li>
+                    <li>
+                        String
+                    </li>
+                    <li>
+                        Array
+                    </li>
+                    <li>
+                        Var
+                    </li>
+                </ul>
+
+                <aside class="notes">
+                    Pretty much all non-primitive types in java can boil down to being either a class, a string, an
+                    interface or an array.
+                </aside>
+            </section>
+            <section>
+                <h4 class="sub-title">
+                    Classes
+                </h4>
+                <div class="fragments">
+                    <pre class="fragment current-visible" data-fragment-index="0">
+                        <code style="font-size: 16px" data-trim data-noescape data-line-numbers=""
+                              class="language-java">
+                            public class App {
+                                public static void main(String[] args) {
+                                    System.out.println("Hello World");
+                                }
+                            }
+                        </code>
+                    </pre>
+                    <pre class="fragment" data-fragment-index="1" style="line-height: 18px">
+                        <code class="language-java" data-trim data-noescape
+                              data-line-numbers="1,3-4,19 | 6-8 | 1, 3-4, 11-13, 15-17, 19 | 1-19"
+                              style="font-size: 12px;">
+                            public class User {
+
+                                char favouriteLetter = 'a';
+                                int age = 35;
+
+                                public String getFavouriteLetter() {
+                                    return favouriteLetter;
+                                }
+
+                                public void setFavouriteLetter(String favouriteLetter) {
+                                    this.favouriteLetter = favouriteLetter;
+                                }
+                            }
+                        </code>
+                    </pre>
+                </div>
+                <aside class="notes">
+                    Classes are the building blocks of an Object orientated programming language, a class is essentially
+                    a blueprint or template of a piece of code that can be used to create objects
+
+                    Most classes created by us will represent real life "things", a common use case would be to have a
+                    "user" class that has some attributes that most users will be associated with.
+
+                    In this example I have "User" class. The user class has some properties; "favouriteLetter" which is
+                    a
+                    chair and "age" which is an int
+
+                </aside>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Strings
+                </h4>
+                <pre style="font-size: 16px">
+                    <code class="language-java" data-trim data-noescape data-line-numbers="|1-3|5-6|8-9">
+                        // Object instantiation
+                        String firstString = new String();
+                        firstString = "This is a string"
+
+                        // assign using the "new" keyword
+                        String anotherString = new String("Another string");
+
+                        // assign through string literal
+                        String aString = "This is a test string";
+                    </code>
+                </pre>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            String types in java are all reference variables or classes.
+                            Essentially holds reference to a bunch of chained together char's
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Arrays
+                </h4>
+                <pre style="font-size: 16px">
+                    <code data-trim data-noescape data-line-numbers="|1-6|8-10|12-14|" class="language-java">
+                        // instantiate an array using fixed length notation
+                        int[] intArray = new int[10];
+                        intArray[2] = 5;
+                        intArray[7] = 25;
+                        intArray[9] = 50;
+                        // output [0, 0, 5, 0, 0, 0, 0, 25, 0, 50]
+
+                        // instantiate an array using array literal
+                        String[] stringArray = {"first", "second", "third", "etc"};
+                        // output [first, second, third, etc]
+
+                        // this would raise "array index out of bounds" error,
+                        // you cannot assign to an index that doesn't exist
+                        stringArray[7] = "temp";
+                    </code>
+                </pre>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Arrays are all initialised with a set number of index's the index cannot change once the,
+                            variable has been created
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h4 class="sub-title">
+                    ArrayLists
+                </h4>
+                <pre style="font-size: 13px">
+                    <code data-trim data-noescape data-line-numbers="|1-7|9-11|13|15-17|19-28|" class="language-java">
+                        ArrayList&lt;String&gt; arrayList = new ArrayList<>();
+                        arrayList.add("String A");
+                        arrayList.add("String B");
+                        arrayList.add("String C");
+                        arrayList.add("String D");
+                        System.out.println(arrayList);
+                        // [String A, String B, String C, String D]
+
+                        arrayList.set(2, "New string");
+                        System.out.println(arrayList);
+                        // [String A, String B, New string, String D]
+
+                        arrayList.add("String E");
+
+                        System.out.println(arrayList.size());
+                        // output
+                        // 5
+
+                        // cool for loop
+                        for (String str : arrayList) {
+                            System.out.println(str);
+                        };
+                        // Output:
+                        // "String A"
+                        // "String B"
+                        // "New string"
+                        // "String D"
+                        // "String E"
+                    </code>
+                </pre>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Array lists are easier to use than arrays
+                        </li>
+                        <li>
+                            Array lists cannot be used to hold primitive data types, only Object's.
+                            If you want to use arraylists for "primitive" types then there are wrapper
+                            object type implementations for all primitives bool -> Bool, int -> Int, char -> Char.
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Map / Hashmap
+                </h4>
+                <pre style="font-size: 14px">
+                    <code data-trim data-noescape data-line-numbers="|1-5|7-8|10-13|15-22|">
+                        Map&lt;String, Integer&gt; aMap = new HashMap<>();
+                        aMap.put("First entry", 1);
+                        aMap.put("Second entry", 2);
+                        aMap.put("Third entry", 3);
+                        aMap.put("Fourth entry", 4);
+
+                        System.out.println(aMap);
+                        // {Second entry=2, Fourth entry=4, First entry=1, Third entry=3}
+
+                        aMap.put("First entry", 100);
+                        System.out.println(aMap);
+                        // Output
+                        // {Second entry=2, Fourth entry=4, First entry=100, Third entry=3}
+
+                        aMap.forEach((key, value) -> {
+                            System.out.println(key + " : " + value);
+                        });
+                        // Output
+                        // Second entry : 2
+                        // Fourth entry : 4
+                        // First entry : 100
+                        // Third entry : 3
+                    </code>
+                </pre>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Var
+                </h4>
+                <p style="font-size: 14px">
+                    Used for dynamic/implicit typing of values through program execution
+                </p>
+                <pre style="font-size: 16px">
+                    <code data-trim data-noescape data-line-numbers="" class="language-java">
+                        // Instantiates a url object and assigns to "google"
+                        URL google = new URL("http://google.com");
+                        // Instantiates a "URLConnection" object and assigns to connection
+                        URLConnection connection = google.openConnection();
+                        // Instantiates a "Reader" object ans assigns to reader
+                        Reader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                        var google = new URL("http://google.com");
+                        var connection = google.openConnection();
+                        var reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    </code>
+                </pre>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Exercise - Fizzbuzz</h2>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Exercise - Fizzbuzz
+                </h4>
+                <p style="font-size: 12px">
+                    Task is <a href="" target="_blank">here</a>
+                </p>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Fizzbuzz - one solution
+                </h4>
+                <pre style="font-size: 14px" class="fragment current-visible" data-fragment-index="0">
+                    <code data-trim data-noescape data-line-numbers="" class="language-java">
+                        ArrayList&lt;String&gt; strings = new ArrayList<>();
+                            for (int i = 0; i < range; i++) {
+                                if ((i % 3 == 0) && (i % 5 == 0)) {
+                                    strings.add("fizzbuzz");
+                                } else if (i % 3 == 0) {
+                                    strings.add("fizz");
+                                } else if (i % 5 == 0) {
+                                    strings.add("buzz");
+                                } else {
+                                    strings.add(Integer.toString(i));
+                                }
+                            }
+
+                            return strings;
+                    </code>
+                </pre>
+            </section>
+        </section>
+        <section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Error handling
+                </h4>
+                <div class="fragments">
+                    <div class="fragment current-visible remove ">
+                        <div class="code-header">
+                            <h3>App.java</h3>
+
+                        </div>
+                        <pre style="font-size: 14px" class="code-with-header" data-fragment-index="0">
+                            <code class="language-java" data-trim data-noescape data-line-numbers="">
+                                package basics
+                                public class App {
+                                    public static void main(String[] args) {
+                                        breakStuff();
+                                    }
+
+                                    private static void breakStuff() {
+                                        try {
+                                            causeStackOverflow();
+                                        } catch (StackOverflowError error) {
+                                            System.out.println("This code caused a stack overflow");
+                                        }
+                                    }
+
+                                    private static void causeStackOverflow () {
+                                        causeStackOverflow();
+                                    }
+                                }
+
+                                // Output
+                                // This code caused a stack overflow
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="fragment current-visible remove ">
+                        <div class="code-header">
+                            <h3>
+                                App.java
+                            </h3>
+                        </div>
+                        <pre style="font-size: 14px" class="code-with-header" data-fragment-index="1">
+                        <code class="language-java" data-trim data-noescape data-line-numbers="">
+                            package basics
+                            public class App {
+                                public static void main(String[] args) {
+                                    breakStuff();
+                                }
+                             private static void breakStuff() {
+                                    try {
+                                        throw new InternalError();
+                                    } catch (AbstractMethodError error) {
+                                        System.out.println("This code caused an abstract method error");
+                                    } catch (StackOverflowError | InternalError error) {
+                                        System.out.println("This code caused a stack overflow or an internal error");
+                                    }
+                                }
+                            private static void causeStackOverflow () {
+                                    causeStackOverflow();
+                                }
+                            }
+
+                            // Output
+                            // This code caused a stack overflow or an internal error
+                        </code>
+                    </pre>
+                    </div>
+
+
+                </div>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Error handling at most basic level, try catch operating the same as try except in python.
+                            Runs the code in the try and if it error with specific error then run the code in the catch
+                        </li>
+                        <li>
+                            More advanced error handling, the catch will look for an AbstractMethodError first,
+                            then see if either StackOverflowError or InternalError were raised
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+
+        </section>
+
+
     </div>
 </div>
+
 
 <script src="dist/reveal.js"></script>
 <script src="plugin/notes/notes.js"></script>
 <script src="plugin/markdown/markdown.js"></script>
 <script src="plugin/highlight/highlight.js"></script>
 <script>
-  // More info about initialization & config:
-  // - https://revealjs.com/initialization/
-  // - https://revealjs.com/config/
-  Reveal.initialize({
-    hash: true,
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
 
-    // Learn about plugins: https://revealjs.com/plugins/
-    plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
-  });
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
 </script>
 </body>
 </html>
+
+
+
+
