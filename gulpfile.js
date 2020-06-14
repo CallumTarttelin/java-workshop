@@ -15,7 +15,6 @@ const gulp = require('gulp')
 const tap = require('gulp-tap')
 const zip = require('gulp-zip')
 const sass = require('gulp-sass')
-const Fiber = require('fibers');
 const header = require('gulp-header')
 const eslint = require('gulp-eslint')
 const connect = require('gulp-connect')
@@ -160,7 +159,7 @@ gulp.task('plugins', () => {
     } ));
 })
 
-const sassFunc = () => sass({ fiber: Fiber, outputStyle: 'compressed' }).on('error', sass.logError)
+const sassFunc = () => sass.sync({ outputStyle: 'compressed' }).on('error', sass.logError)
 
 gulp.task('css-themes', () => gulp.src(['./css/theme/source/*.{sass,scss}'])
         .pipe(sassFunc())
