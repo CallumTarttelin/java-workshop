@@ -299,9 +299,12 @@
                 </h4>
                 <div class="fragment current-visible" data-fragment-index="0">
                     <div class="code-header">
-                        Methods.java
+                        <h3>
+                            Methods.java
+                        </h3>
+
                     </div>
-                    <pre class="code-with-header"  style="font-size: 14px">
+                    <pre class="code-with-header" style="font-size: 14px">
                         <code data-trim data-noescape class="language-java">
                             public class Methods {
 
@@ -454,20 +457,112 @@
                     </ul>
                 </aside>
             </section>
+
             <section>
-                <h2>Exercise - Fizzbuzz</h2>
+                <section>
+                    Basic Maths
+                </section>
             </section>
             <section class="sub-topic">
                 <h4 class="sub-title">
-                    Exercise - Fizzbuzz
+                    Basic Maths
                 </h4>
-                <p style="font-size: 12px">
-                    Task is <a href="">here</a>
-                </p>
+                <pre>
+                <code data-trim data-noescape data-line-numbers="" class="language-java">
+                    int numberOne = 10;
+                    int numberTwo = 20;
+
+                    int sum = numberOne + numberTwo;
+                    int sub = numberOne - numberTwo;
+                    int divide = numberOne / numberTwo;
+                    int multi = numberOne * numberTwo;
+                    int mod = numberOne % numberTwo;
+                </code>
+            </pre>
             </section>
+        </section>
+        <section>
+            <section>
+                <h2>
+                    Exercise - Fibonacci
+                </h2>
+            </section>
+
+
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    Fibonacci - Question
+                </h4>
+                <div style="font-size: 16px">
+                    <p>
+                        A sequence of numbers where the current number (n) in addition to the previous number (n - 1)
+                        creates the next number (n + 1).
+                    </p>
+                    <p>
+                        The first 6 numbers in this sequence are as follows: 0, 1, 1, 2, 3, 5
+                    </p>
+                    <pre style="font-size: 18px">
+                     <code data-trim data-noescape data-line-numbers="">
+                        package basics;
+
+                        public class FibonacciSample {
+
+                            public static void main(String[] args) {
+                                FibonacciSample fibonacciSample = new FibonacciSample();
+                                long number = 10;
+                                System.out.println(fibonacciSample.fib(number));
+                            }
+
+                            // returns the number in the Fibonacci sequence
+                            public long fib(long n) {
+                                return n;
+                            }
+                        }
+                    </code>
+                </pre>
+                </div>
+            </section>
+            <section class="sub-topic">
+                <h4 class="sub-title">
+                    A fibonacci solution
+                </h4>
+                <div class="fragment current-visible" data-fragment-index="0">
+                    <div class="code-header">
+                        <h3>FibonacciSample.java</h3>
+                    </div>
+                    <pre class=" code-with-header" style="font-size: 16px" >
+                    <code class="language-java" data-trim data-noescape data-line-numbers="">
+                        package basics;
+
+                        public class FibonacciSample {
+
+                            public static void main(String[] args) {
+                                FibonacciSample fibonacciSample = new FibonacciSample();
+                                long number = 10;
+                                System.out.println(fibonacciSample.fib(number));
+                            }
+
+                            // returns the number in the Fibonacci sequence
+                            public long fib(long n) {
+                                if (n < 2) {
+                                    return n;
+                                } else {
+                                    return fib(n - 1) + fib(n - 2);
+                                }
+                            }
+                        }
+                    </code>
+                </pre>
+                </div>
+
+            </section>
+        </section>
+        <section>
             <section>
                 <h2>More Types</h2>
+
             </section>
+
             <section class="sub-topic">
                 <h4 class="sub-title">
                     Types - Non primitives (reference variables)
@@ -537,7 +632,8 @@
                     Most classes created by us will represent real life "things", a common use case would be to have a
                     "user" class that has some attributes that most users will be associated with.
 
-                    In this example I have "User" class. The user class has some properties; "favouriteLetter" which is a
+                    In this example I have "User" class. The user class has some properties; "favouriteLetter" which is
+                    a
                     chair and "age" which is an int
 
                 </aside>
@@ -603,8 +699,8 @@
                 <h4 class="sub-title">
                     ArrayLists
                 </h4>
-                <pre style="font-size: 16px">
-                    <code data-trim data-noescape data-line-numbers="|1-7|9-11|13-15|17-20|" class="language-java">
+                <pre style="font-size: 13px">
+                    <code data-trim data-noescape data-line-numbers="|1-7|9-11|13|15-17|19-28|" class="language-java">
                         ArrayList&lt;String&gt; arrayList = new ArrayList<>();
                         arrayList.add("String A");
                         arrayList.add("String B");
@@ -617,14 +713,22 @@
                         System.out.println(arrayList);
                         // [String A, String B, New string, String D]
 
+                        arrayList.add("String E");
+
                         System.out.println(arrayList.size());
                         // output
-                        // 4
+                        // 5
 
                         // cool for loop
                         for (String str : arrayList) {
                             System.out.println(str);
                         };
+                        // Output:
+                        // "String A"
+                        // "String B"
+                        // "New string"
+                        // "String D"
+                        // "String E"
                     </code>
                 </pre>
                 <aside class="notes">
@@ -693,73 +797,43 @@
                     </code>
                 </pre>
             </section>
+        </section>
+        <section>
             <section>
-                Exercise - Fibonacci
+                <h2>Exercise - Fizzbuzz</h2>
             </section>
             <section class="sub-topic">
                 <h4 class="sub-title">
-                    Fibonacci - Question
+                    Exercise - Fizzbuzz
                 </h4>
-                <div style="font-size: 16px">
-                    <p>
-                        A sequence of numbers where the current number (n) in addition to the previous number (n - 1)
-                        creates the next number (n + 1).
-                    </p>
-                    <p>
-                        The first 6 numbers in this sequence are as follows: 0, 1, 1, 2, 3, 5
-                    </p>
-                    <pre style="font-size: 18px">
-                     <code data-trim data-noescape data-line-numbers="">
-                        package basics;
-
-                        public class FibonacciSample {
-
-                            public static void main(String[] args) {
-                                FibonacciSample fibonacciSample = new FibonacciSample();
-                                long number = 10;
-                                System.out.println(fibonacciSample.fib(number));
-                            }
-
-                            // returns the number in the Fibonacci sequence
-                            public long fib(long n) {
-                                return n;
-                            }
-                        }
-                    </code>
-                </pre>
-                </div>
+                <p style="font-size: 12px">
+                    Task is <a href="" target="_blank">here</a>
+                </p>
             </section>
             <section class="sub-topic">
                 <h4 class="sub-title">
-                    A fibonacci solution
+                    Fizzbuzz - one solution
                 </h4>
-                <div class="code-header">
-                    <h3>FibonacciSample.java</h3>
-                </div>
-                <pre class="fragment current-visible code-with-header" style="font-size: 16px" data-fragment-index="0">
-                    <code class="language-java" data-trim data-noescape data-line-numbers="">
-                        package basics;
-
-                        public class FibonacciSample {
-
-                            public static void main(String[] args) {
-                                FibonacciSample fibonacciSample = new FibonacciSample();
-                                long number = 10;
-                                System.out.println(fibonacciSample.fib(number));
-                            }
-
-                            // returns the number in the Fibonacci sequence
-                            public long fib(long n) {
-                                if (n < 2) {
-                                    return n;
+                <pre class="fragment current-visible" data-fragment-index="0">
+                    <code>
+                        ArrayList&lt;String&gt; strings = new ArrayList<>();
+                            for (int i = 0; i < range; i++) {
+                                if ((i % 3 == 0) && (i % 5 == 0)) {
+                                    strings.add("fizzbuzz");
+                                } else if (i % 3 == 0) {
+                                    strings.add("fizz");
+                                } else if (i % 5 == 0) {
+                                    strings.add("buzz");
                                 } else {
-                                    return fib(n - 1) + fib(n - 2);
+                                    strings.add(Integer.toString(i));
                                 }
                             }
-                        }
+
+                            return strings;
                     </code>
                 </pre>
             </section>
+
             <section class="sub-topic">
                 <h4 class="sub-title">
                     Error handling
@@ -800,7 +874,7 @@
                         <div class="code-header">
                             App
                         </div>
-                        <pre style="font-size: 14px" class="code-with-header"  data-fragment-index="1">
+                        <pre style="font-size: 14px" class="code-with-header" data-fragment-index="1">
                         <code class="language-java" data-trim data-noescape data-line-numbers="">
                             package basics
                             public class App {
