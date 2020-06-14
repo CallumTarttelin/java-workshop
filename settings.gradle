@@ -9,6 +9,7 @@
 
 rootProject.name = 'java-workshop'
 include 'fibonacci', 'helloworld'
+include 'helloworld', 'fizzbuzz'
 
 // Use this to change repositories if required
 //gradle.allprojects { project ->
