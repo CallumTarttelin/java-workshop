@@ -31,7 +31,8 @@
                 <ul>
                     <li><a href="https://adoptopenjdk.net/releases.html">JDK > 11, demos tested in 11 and 14</a></li>
                     <li><a href="https://git-scm.com/downloads">git</a></li>
-                    <li><a href="https://code.visualstudio.com/Download">IDE, examples will be in vscode, so will sys dev 2</a></li>
+                    <li><a href="https://code.visualstudio.com/Download">IDE, examples will be in vscode, so will sys
+                        dev 2</a></li>
                 </ul>
             </section>
             <section>
@@ -58,7 +59,7 @@
                         <h3>
                             <span class="hotkey">ctrl</span> +
                             <span class="hotkey">shift</span> +
-                            <span class="hotkey">i</span>
+                            <span class="hotkey">'</span>
                             from inside vscode or in cmd/terminal
                         </h3>
                     </div>
@@ -101,7 +102,7 @@
             </p>
             <aside class="notes">
                 <ul>
-                    <li>Object-oriented programming is a paradigm </li>
+                    <li>Object-oriented programming is a paradigm</li>
                     <li>Java is a popular example of a general purpose object oriented language</li>
                     <li>Java, unlike python, is not a pure OO language because not everything is an object</li>
                 </ul>
@@ -210,9 +211,243 @@
                 </div>
 
                 <aside class="notes">
-                    <ul>Objects are instances of classes</ul>
-                    <ul>Created with the new keyword</ul>
-                    <ul>You can then access fields and methods for this instance of the class</ul>
+                    <ul>
+                        <li>Objects are instances of classes</li>
+                        <li>Created with the new keyword</li>
+                        <li>You can then access fields and methods for this instance of the class</li>
+                    </ul>
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Access Modifiers</h2>
+                <aside class="notes">
+                    You might have noticed a lot of things marked as public, classes and fields in Java can have limited
+                    access from other places
+                </aside>
+            </section>
+            <section>
+                <h3>Access Modifiers</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>Example.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="|2|3|4|5|2-3"
+                                                        class="language-java">
+                        class Example {
+                            public Field publicField;
+                            private Field privateField;
+                            Field packagePrivateField;
+                            protected Field protectedField;
+                        }
+                    </code></pre>
+                </div>
+
+                <aside class="notes">
+                    <ul>
+                        <li>A public class or field can be accessed anywhere</li>
+                        <li>A private class or field can only be accessed in the enclosing class</li>
+                        <li>A package private field can only be accessed by the same package (folder)</li>
+                        <li>A protected field can only be accessed by the enclosing class or its children</li>
+                    </ul>
+                    Most often you will see public and private, where public is to be accessed from anywhere and private
+                    is not supposed to be changed.
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Constructors</h2>
+            </section>
+            <section>
+                <h3>Constructors</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>Example.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="|4-6|8-10|12-13|"
+                                                        class="language-java">
+                        class Example {
+                            private Field field;
+
+                            public Example(Field field) {
+                                this.field = field;
+                            }
+
+                            private Example(FieldBox fieldBox) {
+                                this.field = fieldBox.unbox();
+                            }
+
+                            Example() {
+                            }
+                        }
+                    </code></pre>
+                </div>
+
+                <aside class="notes">
+                    Whilst classes with no constructors defined have a default constructor which gives all fields
+                    default values (usually null unless primitive), you can also define your own.
+                    <ul>
+                        <li>They can take values to give directly to the fields</li>
+                        <li>You can give them other things to compute the value for starting fields</li>
+                        <li>You don't have to initialize anything, by default fields will be given value of null, unless
+                            primitive
+                        </li>
+                    </ul>
+                    Constructors can also have different access modifiers, these work the same as with methods and can
+                    allow for classes that cannot be constructed.
+                    This may be useful if they only have static fields and methods.
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Static</h2>
+            </section>
+            <section>
+                <h3>Static</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>Example.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="" class="language-java">
+                        class Example {
+                            private Field field;
+                            public static String nameSuffix = "Suffix";
+
+                            public static String getName(User user) {
+                                // Cannot access this.field
+                                return user.getName() + nameSuffix;
+                            }
+                        }
+                    </code></pre>
+                </div>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>App.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="" class="language-java">
+                        Example.getField(field);
+                    </code></pre>
+                </div>
+
+                <aside class="notes">
+                    Static methods are called from the class, not the object.
+                    Static methods cannot access non static fields.
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>File Handling</h2>
+            </section>
+            <section>
+                <h3>File Reading</h3>
+                <div class="r-stack">
+                    <div class="fragment fade-out code-header-container" data-fragment-index="0">
+                        <div class="code-header">
+                            <h3>App.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim data-escape class="language-java">
+                            var fileReader = new FileReader(path);
+                            var bufferedReader = new BufferedReader(fileReader);
+                            List&lt;String&gt; lines = bufferedReader
+                                    .lines()
+                                    .collect(Collectors.toList());
+                            fileReader.close();
+                            bufferedReader.close();
+                        </code></pre>
+                    </div>
+                    <div class="fragment current-visible code-header-container" data-fragment-index="0">
+                        <div class="code-header">
+                            <h3>App.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            try (
+                                var bufferReader = new BufferedReader(
+                                    new FileReader(path))
+                            ) {
+                                bufferReader.lines().collect(Collectors.toList());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        </code></pre>
+                    </div>
+                    <div class="fragment code-header-container" data-fragment-index="1">
+                        <div class="code-header">
+                            <h3>App.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            Path filePath = Paths.get(path);
+                            try {
+                                String content = Files.readString(filePath);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        </code></pre>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    There are various ways of reading and writing files in java.
+                    <ul>
+                        <li>Long, complicated, and horribly inelegant, requires a checked IOException, Doesn't close on
+                            error, to do that includes try finally and is even longer
+                        </li>
+                        <li>Auto closes removes the checked exception, still kind of long</li>
+                        <li>Shorter, has readAllLines if a list is desired, requires a path not string</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h3>File Writing</h3>
+                <div class="r-stack">
+                    <div class="fragment fade-out code-header-container" data-fragment-index="0">
+                        <div class="code-header">
+                            <h3>App.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim data-escape class="language-java">
+                            var fileWriter = new FileWriter(path);
+                            var bufferedWriter = new BufferedWriter(fileWriter);
+                            bufferedWriter.write("Hello World!");
+                            fileWriter.close();
+                            bufferedWriter.close();
+                        </code></pre>
+                    </div>
+                    <div class="fragment current-visible code-header-container" data-fragment-index="0">
+                        <div class="code-header">
+                            <h3>App.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            try (
+                                var bufferedWriter = new BufferedWriter(
+                                    new FileWriter(path))
+                            ) {
+                                bufferedWriter.write("Hello World!");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        </code></pre>
+                    </div>
+                    <div class="fragment code-header-container" data-fragment-index="1">
+                        <div class="code-header">
+                            <h3>App.java</h3>
+                        </div>
+                        <pre class="code-with-header"><code data-trim class="language-java">
+                            Path filePath = Paths.get(path);
+                            try {
+                                Files.writeString(filePath);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        </code></pre>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    There are similar methods for writing strings to files.
+                    They are pretty similar to reading.
                 </aside>
             </section>
         </section>
