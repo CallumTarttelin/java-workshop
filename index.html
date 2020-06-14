@@ -451,6 +451,234 @@
                 </aside>
             </section>
         </section>
+        <section>
+            <h1>OOP concepts</h1>
+        </section>
+        <section>
+            <section>
+                <h2>Encapsulation</h2>
+                <aside class="notes">
+                    Uses methods to prevent misuse of fields
+                </aside>
+            </section>
+            <section>
+                <h3>Encapsulation</h3>
+                <div class="code-header-container" data-fragment-index="0">
+                    <div class="code-header">
+                        <h3>Person.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-escape data-line-numbers="|2|4-10|" class="language-java">
+                        public class Person {
+                            private String name;
+
+                            public String getName() {
+                                return this.name;
+                            }
+
+                            public void setName(String name) {
+                                this.name = name;
+                            }
+                        }
+                    </code></pre>
+                </div>
+                <aside class="notes">
+                    This is usually achieved by using methods to get and set data correctly,
+                    this allows for defining public use making refactoring easy in case fields change in the future,
+                    you can be sure they aren't used.
+
+                    In java these are commonly getters and setters like these, these do get quite out of control in
+                    larger classes and some tools can be used to generate these for you.
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Inheritance</h2>
+                <aside class="notes">
+                    The idea of classes extending the functionality of other classes
+                </aside>
+            </section>
+            <section>
+                <h3>Inheritance</h3>
+                <div class="code-header-container" data-fragment-index="0">
+                    <div class="code-header">
+                        <h3>Person.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-escape data-line-numbers class="language-java">
+                        public class Person {
+                            protected int age;
+                            public String name;
+
+                            public Person(int age, String name) {
+                                this.age = age;
+                                this.name = name;
+                            }
+
+                            public String favouriteColor() {
+                                return "#564374";
+                            }
+                        }
+                    </code></pre>
+                </div>
+                <aside class="notes">
+                    This is just a generic class, there should be nothing new here
+                </aside>
+            </section>
+            <section>
+                <h3>Inheritance</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>User.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="|2-7|9-11|" class="language-java">
+                        public class User extends Person {
+                            private Long id;
+
+                            public User(int age, String name, Long id) {
+                                super(age, name);
+                                this.id = id;
+                            }
+
+                            public int getAge() {
+                                return this.age;
+                            }
+                        }
+                    </code></pre>
+                </div>
+                <aside class="notes">
+                    Here we have used extends to inherit the parent class.
+                    This allows us to add fields and provide new constructors, the super() keyword allows us to access parent constructor
+                    getAge accesses a protected field, it can do that as it is a child of person
+                </aside>
+            </section>
+            <section>
+                <h3>Inheritance</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>App.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="13-16" class="language-java">
+                        public class User extends Person {
+                            private Long id;
+
+                            public User(int age, String name, Long id) {
+                                super(age, name);
+                                this.id = id;
+                            }
+
+                            public int getAge() {
+                                return this.age;
+                            }
+
+                            @Override
+                            public String favouriteColor() {
+                                return "#109f40";
+                            }
+                        }
+                    </code></pre>
+                </div>
+                <aside class="notes">
+                    Here we can also add a method that overrides the parent method,
+                    the @Override is technically optional but stops compiler warnings
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Interfaces</h2>
+                <aside class="notes">
+                    Interfaces are used to describe what features a class should have.
+                    It does not define any of the behaviour itself
+                </aside>
+            </section>
+            <section>
+                <h3>Interfaces</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>Shape.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="" class="language-java">
+                        public interface Shape {
+                            Double getArea();
+
+                            default Integer getAreaInt() {
+                                return getArea().intValue();
+                            }
+                        }
+                    </code></pre>
+                </div>
+                <aside class="notes">
+                    Interfaces are defined similarly to classes,
+                    all the methods have no implementation unless default is set.
+                    All methods are public by default.
+                </aside>
+            </section>
+            <section>
+                <h3>Interfaces</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>Square.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="|1|10-13|" class="language-java">
+                        public class Square implements Shape {
+                            private final Double x;
+                            private final Double y;
+
+                            public Square(Double x, Double y) {
+                                this.x = x;
+                                this.y = y;
+                            }
+
+                            @Override
+                            public Double getArea() {
+                                return x * y;
+                            }
+                        }
+                    </code></pre>
+                </div>
+                <aside class="notes">
+                    Interfaces are implemented with the implements keyword
+                    Methods from interface are marked with @Override and implemented,
+                    the default method will be implemented automatically
+                </aside>
+            </section>
+            <section>
+                <h3>Interfaces</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>App.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="|1|10-13|" class="language-java">
+                        Shape shape = new Square(3.0, 4.0);
+                        shape.getArea();
+                        // 12.0
+                    </code></pre>
+                </div>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>App.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-line-numbers="|1|10-13|" class="language-java">
+                        public Double area(Shape shape) {
+                            return shape.getArea();
+                        }
+                    </code></pre>
+                </div>
+                <aside class="notes">
+                    You can specify the interface as the type accepted and accept any class that implements the interface.
+                    This allows for different methods to be called within a method dependent on class.
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Polymorphism</h2>
+                <aside class="notes">
+                    Is a name used when calling code that is agnostic to the class it is operating on.
+                    In the interface example, if there was a Circle as well as a Square the area method would be polymorphic.
+                </aside>
+            </section>
+        </section>
     </div>
 </div>
 
