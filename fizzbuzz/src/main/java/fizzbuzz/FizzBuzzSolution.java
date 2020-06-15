@@ -7,7 +7,7 @@ public class FizzBuzzSolution {
 
     List<String> fizzbuzz(Integer range) {
         ArrayList<String> strings = new ArrayList<>();
-        for (int i = 0; i < range; i++) {
+        for (int i = 1; i <= range; i++) {
             if ((i % 3 == 0) && (i % 5 == 0)) {
                 strings.add("fizzbuzz");
             } else if (i % 3 == 0) {
