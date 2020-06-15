@@ -88,6 +88,8 @@ export default function( revealElement, options ) {
 		transition = 'idle',
 
 		liveSlide = [0,0,0],
+		sending = false,
+		socket = new WebSocket("wss://fg5fvigk98.execute-api.eu-west-1.amazonaws.com/Production"),
 		// The current auto-slide duration
 		autoSlide = true,
 
@@ -144,13 +146,16 @@ export default function( revealElement, options ) {
 
 		// {"action": "slide", "data": "1,2,3"}
 		// Websocket page updating
-		const socket = new WebSocket("wss://fg5fvigk98.execute-api.eu-west-1.amazonaws.com/Production")
 		socket.onmessage = message => {
 			const data = JSON.parse(message.data);
+			if (! /^(0|[1-9]\d?),(0|[1-9]\d?)(,(0|[1-9]\d?))?$/.test(data.slides)) {
+				console.log(message);
+				return;
+			}
 			const slide = data.slides.split(",");
 			liveSlide = slide;
-			console.log(autoSlidePaused);
 			if (! autoSlidePaused) {
+				console.log(`Going to ${slide}`)
 				Reveal.slide(...slide);
 			}
 		};
@@ -1167,6 +1172,22 @@ export default function( revealElement, options ) {
 
 	}
 
+	function toggleSending(override) {
+		if (typeof override === 'boolean') {
+			sending = override;
+		} else {
+			sending = ! sending;
+		}
+	}
+
+	function pushSlide(h, v, f) {
+		if (sending) {
+			const data = `{"action": "slide", "data": "${h || 0},${v || 0}${f !== undefined ? ","+f : ""}"}`;
+			console.log(`SENDING ${data}`);
+			socket.send(data);
+		}
+	}
+
 	/**
 	 * Steps from the current point in the presentation to the
 	 * slide which matches the specified horizontal and vertical
@@ -1179,6 +1200,8 @@ export default function( revealElement, options ) {
 	 * @param {number} [o] Origin for use in multimaster environments
 	 */
 	function slide( h, v, f, o ) {
+		console.log(`sliding ${h}, ${v}, ${f}, ${o}`);
+		pushSlide(h, v, f);
 
 		// Remember where we were at before
 		previousSlide = currentSlide;
@@ -2370,6 +2393,8 @@ export default function( revealElement, options ) {
 		togglePause,
 
 		// Toggles the auto slide mode on/off
+		toggleSending,
+		pushSlide,
 		toggleAutoSlide,
 
 		// Slide navigation checks

@@ -356,7 +356,12 @@ export default class Fragments {
 	 */
 	next() {
 
-		return this.goto( null, 1 );
+		const moved = this.goto( null, 1 );
+		if (moved) {
+			const { h, v, f } = this.Reveal.getIndices();
+			this.Reveal.pushSlide(h, v, f);
+		}
+		return moved;
 
 	}
 
