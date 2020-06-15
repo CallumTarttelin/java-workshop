@@ -152,11 +152,13 @@ export default function( revealElement, options ) {
 				console.log(message);
 				return;
 			}
-			const slide = data.slides.split(",");
-			liveSlide = slide;
+			const slideData = data.slides
+				.split(",")
+				.map(stringInt => Number.parseInt(stringInt));
+			liveSlide = slideData;
 			if (! autoSlidePaused) {
-				console.log(`Going to ${slide}`)
-				Reveal.slide(...slide);
+				console.log(`Going to ${slideData}`)
+				slide(...slideData);
 			}
 		};
 
