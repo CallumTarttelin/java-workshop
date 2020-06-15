@@ -12,6 +12,13 @@ import Deck, { VERSION } from './reveal.js'
  */
 let Reveal = Deck;
 
+// Websocket page updating
+// const socket = new WebSocket("wss://fg5fvigk98.execute-api.eu-west-1.amazonaws.com/Production")
+// socket.onmessage = message => {
+// 	const data = JSON.parse(message.data);
+// 	const slide = data.slides.split(",");
+// 	Reveal.slide(...slide);
+// };
 
 /**
  * The below is a thin shell that mimics the pre 4.0
@@ -24,8 +31,6 @@ let Reveal = Deck;
  *   // reveal.js is ready
  * });
  */
-
-// {"action": "slide", "data": "1,2,3"}
 
 let enqueuedAPICalls = [];
 
