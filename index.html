@@ -793,7 +793,7 @@
                 <pre class="fragment current-visible" data-fragment-index="0">
                     <code data-trim data-noescape data-line-numbers="" class="language-java">
                         ArrayList&lt;String&gt; strings = new ArrayList<>();
-                            for (int i = 0; i < range; i++) {
+                            for (int i = 1; i <= range; i++) {
                                 if ((i % 3 == 0) && (i % 5 == 0)) {
                                     strings.add("fizzbuzz");
                                 } else if (i % 3 == 0) {
@@ -1365,7 +1365,39 @@
             </aside>
         </section>
         <section>
-            <h2>Streams, Optionals, Lambdas, And method references</h2>
+            <section>
+                <h2>Streams, Optionals, Lambdas, And method references</h2>
+            </section>
+            <section>
+                <h3>Streams and Lambdas</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>App.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-escape data-line-numbers="|1|10-13|" class="language-java">
+                        List&lt;String&gt; = Arrays.asList("hello", "world");
+                        list.stream()
+                            .map(item -> item.toUpperCase())
+                            .forEach(item -> System.out.println(item);
+                        // HELLO
+                        // WORLD
+                    </code></pre>
+                </div>
+            </section>
+            <section>
+                <h3>Optionals and Method References</h3>
+                <div class="code-header-container">
+                    <div class="code-header">
+                        <h3>App.java</h3>
+                    </div>
+                    <pre class="code-with-header"><code data-trim data-escape data-line-numbers="|1|10-13|" class="language-java">
+                        Optional&lt;String&gt; optionalString = Option.empty();
+                        optionalString
+                            .map(String::toUpperCase)
+                            .ifPresent(item -> System.out.println(item);
+                    </code></pre>
+                </div>
+            </section>
         </section>
 
     </div>
