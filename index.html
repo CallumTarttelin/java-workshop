@@ -37,7 +37,7 @@
             </section>
             <section>
                 <h3>Getting exercises in vscode</h3>
-                <div>
+                <div class="code-header-container">
                     <div class="code-header">
                         <h3>Run in cmd/terminal</h3>
                     </div>
@@ -1030,13 +1030,15 @@
                             <h3>App.java</h3>
                         </div>
                         <pre class="code-with-header"><code data-trim data-escape class="language-java">
-                            var fileReader = new FileReader(path);
-                            var bufferedReader = new BufferedReader(fileReader);
-                            List&lt;String&gt; lines = bufferedReader
-                                    .lines()
-                                    .collect(Collectors.toList());
-                            fileReader.close();
-                            bufferedReader.close();
+                            void example() throws IOException {
+                                var fileReader = new FileReader(path);
+                                var bufferedReader = new BufferedReader(fileReader);
+                                List&lt;String&gt; lines = bufferedReader
+                                        .lines()
+                                        .collect(Collectors.toList());
+                                fileReader.close();
+                                bufferedReader.close();
+                            }
                         </code></pre>
                     </div>
                     <div class="fragment current-visible code-header-container" data-fragment-index="0">
