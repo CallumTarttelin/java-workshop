@@ -87,14 +87,16 @@ export default function( revealElement, options ) {
 		// The current slide transition state; idle or running
 		transition = 'idle',
 
+		liveSlide = [0,0,0],
+		sending = false,
+		socket = new WebSocket("wss://fg5fvigk98.execute-api.eu-west-1.amazonaws.com/Production"),
 		// The current auto-slide duration
-		autoSlide = 0,
+		autoSlide = true,
 
 		// Auto slide properties
 		autoSlidePlayer,
-		autoSlideTimeout = 0,
 		autoSlideStartTime = -1,
-		autoSlidePaused = false,
+		autoSlidePaused = true,
 
 		// Controllers for different aspects of our presentation. They're
 		// all given direct references to this Reveal instance since there
@@ -141,6 +143,24 @@ export default function( revealElement, options ) {
 
 		// Register plugins and load dependencies, then move on to #start()
 		plugins.load( config.plugins, config.dependencies ).then( start );
+
+		// {"action": "slide", "data": "1,2,3"}
+		// Websocket page updating
+		socket.onmessage = message => {
+			const data = JSON.parse(message.data);
+			if (! /^(0|[1-9]\d?),(0|[1-9]\d?)(,(0|[1-9]\d?))?$/.test(data.slides)) {
+				console.log(message);
+				return;
+			}
+			const slideData = data.slides
+				.split(",")
+				.map(stringInt => Number.parseInt(stringInt));
+			liveSlide = slideData;
+			if (! autoSlidePaused) {
+				console.log(`Going to ${slideData}`)
+				slide(...slideData);
+			}
+		};
 
 		return new Promise( resolve => Reveal.on( 'ready', resolve ) );
 
@@ -458,9 +478,9 @@ export default function( revealElement, options ) {
 			autoSlidePlayer = new Playback( dom.wrapper, () => {
 				return Math.min( Math.max( ( Date.now() - autoSlideStartTime ) / autoSlide, 0 ), 1 );
 			} );
-
+			autoSlidePlayer.setPlaying(false);
 			autoSlidePlayer.on( 'click', onAutoSlidePlayerClick );
-			autoSlidePaused = false;
+			autoSlidePaused = true;
 		}
 
 		// Add the navigation mode to the DOM so we can adjust styling
@@ -1154,6 +1174,22 @@ export default function( revealElement, options ) {
 
 	}
 
+	function toggleSending(override) {
+		if (typeof override === 'boolean') {
+			sending = override;
+		} else {
+			sending = ! sending;
+		}
+	}
+
+	function pushSlide(h, v, f) {
+		if (sending) {
+			const data = `{"action": "slide", "data": "${h || 0},${v || 0}${f !== undefined ? ","+f : ""}"}`;
+			console.log(`SENDING ${data}`);
+			socket.send(data);
+		}
+	}
+
 	/**
 	 * Steps from the current point in the presentation to the
 	 * slide which matches the specified horizontal and vertical
@@ -1166,6 +1202,8 @@ export default function( revealElement, options ) {
 	 * @param {number} [o] Origin for use in multimaster environments
 	 */
 	function slide( h, v, f, o ) {
+		console.log(`sliding ${h}, ${v}, ${f}, ${o}`);
+		pushSlide(h, v, f);
 
 		// Remember where we were at before
 		previousSlide = currentSlide;
@@ -2042,79 +2080,6 @@ export default function( revealElement, options ) {
 	 * Cues a new automated slide if enabled in the config.
 	 */
 	function cueAutoSlide() {
-
-		cancelAutoSlide();
-
-		if( currentSlide && config.autoSlide !== false ) {
-
-			let fragment = currentSlide.querySelector( '.current-fragment' );
-
-			// When the slide first appears there is no "current" fragment so
-			// we look for a data-autoslide timing on the first fragment
-			if( !fragment ) fragment = currentSlide.querySelector( '.fragment' );
-
-			let fragmentAutoSlide = fragment ? fragment.getAttribute( 'data-autoslide' ) : null;
-			let parentAutoSlide = currentSlide.parentNode ? currentSlide.parentNode.getAttribute( 'data-autoslide' ) : null;
-			let slideAutoSlide = currentSlide.getAttribute( 'data-autoslide' );
-
-			// Pick value in the following priority order:
-			// 1. Current fragment's data-autoslide
-			// 2. Current slide's data-autoslide
-			// 3. Parent slide's data-autoslide
-			// 4. Global autoSlide setting
-			if( fragmentAutoSlide ) {
-				autoSlide = parseInt( fragmentAutoSlide, 10 );
-			}
-			else if( slideAutoSlide ) {
-				autoSlide = parseInt( slideAutoSlide, 10 );
-			}
-			else if( parentAutoSlide ) {
-				autoSlide = parseInt( parentAutoSlide, 10 );
-			}
-			else {
-				autoSlide = config.autoSlide;
-
-				// If there are media elements with data-autoplay,
-				// automatically set the autoSlide duration to the
-				// length of that media. Not applicable if the slide
-				// is divided up into fragments.
-				// playbackRate is accounted for in the duration.
-				if( currentSlide.querySelectorAll( '.fragment' ).length === 0 ) {
-					Util.queryAll( currentSlide, 'video, audio' ).forEach( el => {
-						if( el.hasAttribute( 'data-autoplay' ) ) {
-							if( autoSlide && (el.duration * 1000 / el.playbackRate ) > autoSlide ) {
-								autoSlide = ( el.duration * 1000 / el.playbackRate ) + 1000;
-							}
-						}
-					} );
-				}
-			}
-
-			// Cue the next auto-slide if:
-			// - There is an autoSlide value
-			// - Auto-sliding isn't paused by the user
-			// - The presentation isn't paused
-			// - The overview isn't active
-			// - The presentation isn't over
-			if( autoSlide && !autoSlidePaused && !isPaused() && !overview.isActive() && ( !isLastSlide() || fragments.availableRoutes().next || config.loop === true ) ) {
-				autoSlideTimeout = setTimeout( () => {
-					if( typeof config.autoSlideMethod === 'function' ) {
-						config.autoSlideMethod()
-					}
-					else {
-						navigateNext();
-					}
-					cueAutoSlide();
-				}, autoSlide );
-				autoSlideStartTime = Date.now();
-			}
-
-			if( autoSlidePlayer ) {
-				autoSlidePlayer.setPlaying( autoSlideTimeout !== -1 );
-			}
-
-		}
-
 	}
 
 	/**
@@ -2122,32 +2087,20 @@ export default function( revealElement, options ) {
 	 */
 	function cancelAutoSlide() {
 
-		clearTimeout( autoSlideTimeout );
-		autoSlideTimeout = -1;
-
 	}
 
 	function pauseAutoSlide() {
 
-		if( autoSlide && !autoSlidePaused ) {
-			autoSlidePaused = true;
-			dispatchEvent({ type: 'autoslidepaused' });
-			clearTimeout( autoSlideTimeout );
-
-			if( autoSlidePlayer ) {
-				autoSlidePlayer.setPlaying( false );
-			}
-		}
+		autoSlidePaused = true;
+		autoSlidePlayer.setPlaying(false);
 
 	}
 
 	function resumeAutoSlide() {
 
-		if( autoSlide && autoSlidePaused ) {
-			autoSlidePaused = false;
-			dispatchEvent({ type: 'autoslideresumed' });
-			cueAutoSlide();
-		}
+		autoSlidePaused = false;
+		autoSlidePlayer.setPlaying(true);
+		Reveal.slide(...liveSlide);
 
 	}
 
@@ -2442,6 +2395,8 @@ export default function( revealElement, options ) {
 		togglePause,
 
 		// Toggles the auto slide mode on/off
+		toggleSending,
+		pushSlide,
 		toggleAutoSlide,
 
 		// Slide navigation checks
